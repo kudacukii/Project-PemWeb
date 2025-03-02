@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bantoo! - Kampanye</title>
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="/Bantoo!/css/global.css">
+    <link rel="stylesheet" href="/Bantoo!/css/header.css">
+    <link rel="stylesheet" href="/Bantoo!/css/buttons.css">
+    <link rel="stylesheet" href="/Bantoo!/css/footer.css">
+    <link rel="stylesheet" href="/Bantoo!/css/form.css">
+    <!-- CSS Khusus Kampanye -->
+    <link rel="stylesheet" href="/Bantoo!/css/kampanye.css">
+</head>
+<body>
+    <header>
+        <h1>Bantoo!</h1>
+        <nav>
+            <a href="/Bantoo!/html/Bantoo!.html">Beranda</a>
+            <a href="/Bantoo!/html/kategori.html">Kategori Donasi</a>
+            <a href="/Bantoo!/html/kampanye.html">Kampanye</a>
+            <a href="/Bantoo!/html/profil.html">Profil</a>
+            <a href="/Bantoo!/html/lokasi.html">Lokasi Bencana</a>
+            <span id="authButtons"></span> <!-- Tombol Login/Logout -->
+        </nav>
+    </header>
+
+    <main>
+        <section id="kelola-kampanye">
+            <h2>Kelola Kampanye</h2>
+
+            <!-- Form Tambah/Edit Kampanye -->
+            <form id="formKampanye">
+                <input type="hidden" id="kampanyeId">
+                <div class="form-group">
+                    <label for="nama">Nama Kampanye:</label>
+                    <input type="text" id="nama" required>
+                </div>
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi:</label>
+                    <textarea id="deskripsi" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="target">Target Donasi (Rp):</label>
+                    <input type="number" id="target" required>
+                </div>
+                <button type="submit">Simpan</button>
+            </form>
+
+            <!-- Fitur Pencarian -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cari kampanye...">
+                <button onclick="cariKampanye()">Cari</button>
+            </div>
+
+            <!-- Daftar Kampanye -->
+            <div id="daftarKampanye">
+                <h3>Daftar Kampanye</h3>
+                <ul id="listKampanye">
+                    <!-- Item kampanye akan ditambahkan di sini secara dinamis -->
+                </ul>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination">
+                <button id="prevPage">Sebelumnya</button>
+                <span id="pageInfo"></span>
+                <button id="nextPage">Selanjutnya</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pop-up Edit Kampanye -->
+    <div id="editPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="tutupPopup()">&times;</span>
+            <h2>Edit Kampanye</h2>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editNama">Nama Kampanye:</label>
+                    <input type="text" id="editNama" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDeskripsi">Deskripsi:</label>
+                    <textarea id="editDeskripsi" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editTarget">Target Donasi (Rp):</label>
+                    <input type="number" id="editTarget" required>
+                </div>
+                <button type="submit">Simpan Perubahan</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bantoo!. Semua hak dilindungi.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/Bantoo!/js/auth.js"></script>
+    <script src="/Bantoo!/js/kampanye.js"></script>
+</body>
+</html>

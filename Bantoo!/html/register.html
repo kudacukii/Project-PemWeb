@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bantoo! - Daftar</title>
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body>
+    <header>
+        <h1>Bantoo!</h1>
+        <nav>
+            <a href="../html/Bantoo!.html">Beranda</a>
+            <a href="../html/login.html">Login</a>
+            <a href="../html/register.html">Daftar</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="register">
+            <h2>Daftar</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerUsername">Username:</label>
+                    <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password:</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <button type="submit">Daftar</button>
+            </form>
+            <p>Sudah punya akun? <a href="../html/login.html">Login di sini</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bantoo!. Semua hak dilindungi.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../js/register.js"></script>
+</body>
+</html>

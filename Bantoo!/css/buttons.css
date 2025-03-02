@@ -1,0 +1,39 @@
+/* Gaya Tombol */
+button {
+    background-color: #4CAF50; /* Warna hijau */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efek transisi saat hover */
+}
+
+button:hover {
+    background-color: #45a049; /* Warna hijau lebih gelap saat hover */
+}
+
+/* Gaya khusus untuk tombol logout */
+button.logout-button {
+    background-color: #f44336; /* Warna merah */
+    margin-left: 1rem; /* Jarak dari elemen sebelumnya */
+}
+
+button.logout-button:hover {
+    background-color: #d32f2f; /* Warna merah lebih gelap saat hover */
+}
+
+/* Gaya untuk Tombol Login */
+.login-button {
+    background-color: #4CAF50; /* Warna hijau */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-left: auto; /* Posisikan di sebelah kanan */
+    transition: background-color 0.3s ease; /* Efek transisi saat hover */
+}
+
+.login-button:hover {
+    background-color: #45a049; /* Warna hijau lebih gelap saat hover */
+}

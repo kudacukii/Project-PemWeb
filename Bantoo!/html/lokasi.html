@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bantoo! - Lokasi Bencana</title>
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body>
+    <header>
+        <h1>Bantoo!</h1>
+        <nav>
+            <a href="../html/Bantoo!.html">Beranda</a>
+            <a href="../html/kategori.html">Kategori Donasi</a>
+            <a href="../html/kampanye.html">Kampanye</a>
+            <a href="../html/profil.html">Profil</a>
+            <a href="../html/lokasi.html">Lokasi Bencana</a>
+            <span id="authButtons"></span> <!-- Tombol Login/Logout akan muncul di sini -->
+        </nav>
+    </header>
+
+    <main>
+        <section id="lokasi">
+            <h2>Pilih Lokasi</h2>
+            <div class="form-group">
+                <label for="provinsi">Provinsi:</label>
+                <select id="provinsi" onchange="isiKota()">
+                    <option value="">Pilih Provinsi</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="kota">Kota:</label>
+                <select id="kota">
+                    <option value="">Pilih Kota</option>
+                </select>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bantoo!. Semua hak dilindungi.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../js/auth.js"></script>
+    <script src="../data/lokasi.js"></script>
+    <script>
+        // Isi dropdown provinsi
+        const provinsiSelect = document.getElementById('provinsi');
+        lokasi.provinsi.forEach(prov => {
+            const option = document.createElement('option');
+            option.value = prov.nama;
+            option.textContent = prov.nama;
+            provinsiSelect.appendChild(option);
+        });
+
+        // Isi dropdown kota berdasarkan provinsi yang dipilih
+        function isiKota() {
+            const kotaSelect = document.getElementById('kota');
+            kotaSelect.innerHTML = '<option value="">Pilih Kota</option>';
+
+            const provinsiTerpilih = provinsiSelect.value;
+            const provinsi = lokasi.provinsi.find(prov => prov.nama === provinsiTerpilih);
+
+            if (provinsi) {
+                provinsi.kota.forEach(kota => {
+                    const option = document.createElement('option');
+                    option.value = kota;
+                    option.textContent = kota;
+                    kotaSelect.appendChild(option);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
