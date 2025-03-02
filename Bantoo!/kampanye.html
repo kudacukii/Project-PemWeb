@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bantoo! - Kelola Kampanye</title>
+    <link rel="stylesheet" href="kb_css.css">
+</head>
+<body>
+    <header>
+        <h1>Bantoo!</h1>
+        <nav>
+            <a href="Bantoo!.html">Beranda</a>
+            <a href="kategori.html">Kategori Donasi</a>
+            <a href="kampanye.html">Kampanye</a>
+            <a href="profil.html">Profil</a>
+            <a href="lokasi.html">Lokasi Bencana</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="kelola-kampanye">
+            <h2>Kelola Kampanye</h2>
+
+            <!-- Form Tambah/Edit Kampanye -->
+            <form id="formKampanye">
+                <input type="hidden" id="kampanyeId">
+                <div class="form-group">
+                    <label for="nama">Nama Kampanye:</label>
+                    <input type="text" id="nama" required>
+                </div>
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi:</label>
+                    <textarea id="deskripsi" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="target">Target Donasi (Rp):</label>
+                    <input type="number" id="target" required>
+                </div>
+                <button type="submit">Simpan</button>
+            </form>
+
+            <!-- Fitur Pencarian -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cari kampanye...">
+                <button onclick="cariKampanye()">Cari</button>
+            </div>
+
+            <!-- Daftar Kampanye -->
+            <div id="daftarKampanye">
+                <h3>Daftar Kampanye</h3>
+                <ul id="listKampanye"></ul>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination">
+                <button id="prevPage">Sebelumnya</button>
+                <span id="pageInfo"></span>
+                <button id="nextPage">Selanjutnya</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bantoo!. Semua hak dilindungi.</p>
+    </footer>
+
+    <script src="kb_js.js"></script>
+</body>
+</html>
