@@ -1,6 +1,6 @@
 /* Gaya untuk Section Hero */
 #hero {
-    background-image: url('/Bantoo!/foto/bg.png'); /* Ganti dengan URL gambar Anda */
+    background-image: url('../foto/bg.png'); /* Ganti dengan URL gambar Anda */
     background-size: cover;
     background-position: center;
     color: white;
