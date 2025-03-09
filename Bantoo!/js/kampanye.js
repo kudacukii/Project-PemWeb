@@ -1,5 +1,39 @@
-// Data Kampanye (Disimpan di localStorage)
+// Data kampanye default (jika belum ada data di localStorage)
+const dataKampanyeDefault = [
+    {
+        id: 1,
+        nama: "Banjir di Jakarta",
+        lokasi: "Jakarta",
+        deskripsi: "Banjir melanda Jakarta, ribuan warga membutuhkan bantuan darurat.",
+        gambar: "url_gambar_banjir.jpg",
+        tanggal: "2023-10-01"
+    },
+    {
+        id: 2,
+        nama: "Gempa di Sulawesi",
+        lokasi: "Sulawesi",
+        deskripsi: "Gempa berkekuatan 6,5 SR mengguncang Sulawesi Tengah.",
+        gambar: "url_gambar_gempa.jpg",
+        tanggal: "2023-09-25"
+    },
+    {
+        id: 3,
+        nama: "Kekeringan di NTT",
+        lokasi: "NTT",
+        deskripsi: "Kekeringan melanda Nusa Tenggara Timur, warga kesulitan mendapatkan air bersih.",
+        gambar: "url_gambar_kekeringan.jpg",
+        tanggal: "2023-09-20"
+    }
+];
+
+// Cek apakah data kampanye sudah ada di localStorage
 let kampanye = JSON.parse(localStorage.getItem('kampanye')) || [];
+
+// Jika belum ada data, tambahkan data default ke localStorage
+if (kampanye.length === 0) {
+    localStorage.setItem('kampanye', JSON.stringify(dataKampanyeDefault));
+    kampanye = dataKampanyeDefault; // Perbarui variabel kampanye dengan data default
+}
 
 // Elemen HTML
 const formKampanye = document.getElementById('formKampanye');
@@ -29,6 +63,7 @@ function tampilkanKampanye(data = kampanye) {
         const li = document.createElement('li');
         li.innerHTML = `
             <div>
+                <img src="${item.gambar}" alt="${item.nama}" style="width: 100px; height: auto; border-radius: 8px;">
                 <strong>${item.nama}</strong>
                 <p>${item.deskripsi}</p>
                 <p>Target: Rp${item.target}</p>
@@ -50,30 +85,41 @@ function tampilkanKampanye(data = kampanye) {
 // Fungsi untuk menambahkan/mengedit kampanye
 formKampanye.addEventListener('submit', function (e) {
     e.preventDefault();
+
+    // Ambil nilai dari form
     const id = document.getElementById('kampanyeId').value;
     const nama = document.getElementById('nama').value;
     const deskripsi = document.getElementById('deskripsi').value;
     const target = document.getElementById('target').value;
+    const gambar = document.getElementById('gambar').files[0];
 
-    if (!nama || !deskripsi || !target) {
+    // Validasi input
+    if (!nama || !deskripsi || !target || !gambar) {
         alert('Semua field harus diisi!');
         return;
     }
 
-    if (id) {
-        // Edit kampanye
-        kampanye[id] = { nama, deskripsi, target };
-        alert('Kampanye berhasil diubah!');
-    } else {
-        // Tambah kampanye baru
-        kampanye.push({ nama, deskripsi, target });
-        alert('Kampanye berhasil ditambahkan!');
-    }
+    // Baca gambar sebagai URL
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const gambarURL = e.target.result;
 
-    localStorage.setItem('kampanye', JSON.stringify(kampanye));
-    tampilkanKampanye();
-    formKampanye.reset();
-    document.getElementById('kampanyeId').value = '';
+        if (id) {
+            // Edit kampanye
+            kampanye[id] = { nama, deskripsi, target, gambar: gambarURL };
+            alert('Kampanye berhasil diubah!');
+        } else {
+            // Tambah kampanye baru
+            kampanye.push({ nama, deskripsi, target, gambar: gambarURL });
+            alert('Kampanye berhasil ditambahkan!');
+        }
+
+        localStorage.setItem('kampanye', JSON.stringify(kampanye));
+        tampilkanKampanye();
+        formKampanye.reset();
+        document.getElementById('kampanyeId').value = '';
+    };
+    reader.readAsDataURL(gambar); // Baca file gambar
 });
 
 // Fungsi untuk membuka pop-up edit
@@ -94,21 +140,39 @@ function tutupPopup() {
 // Fungsi untuk menyimpan perubahan dari pop-up edit
 editForm.addEventListener('submit', function (e) {
     e.preventDefault();
+
+    // Ambil nilai dari form edit
     const nama = document.getElementById('editNama').value;
     const deskripsi = document.getElementById('editDeskripsi').value;
     const target = document.getElementById('editTarget').value;
+    const gambar = document.getElementById('editGambar').files[0];
 
+    // Validasi input
     if (!nama || !deskripsi || !target) {
         alert('Semua field harus diisi!');
         return;
     }
 
-    // Update data kampanye yang sedang diedit
-    kampanye[kampanyeYangSedangDiedit] = { nama, deskripsi, target };
-    localStorage.setItem('kampanye', JSON.stringify(kampanye));
-    alert('Kampanye berhasil diubah!');
-    tampilkanKampanye();
-    tutupPopup(); // Tutup pop-up setelah menyimpan perubahan
+    // Jika ada gambar baru, baca sebagai URL
+    if (gambar) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const gambarURL = e.target.result;
+            kampanye[kampanyeYangSedangDiedit] = { nama, deskripsi, target, gambar: gambarURL };
+            localStorage.setItem('kampanye', JSON.stringify(kampanye));
+            alert('Kampanye berhasil diubah!');
+            tampilkanKampanye();
+            tutupPopup();
+        };
+        reader.readAsDataURL(gambar);
+    } else {
+        // Jika tidak ada gambar baru, gunakan gambar lama
+        kampanye[kampanyeYangSedangDiedit] = { nama, deskripsi, target, gambar: kampanye[kampanyeYangSedangDiedit].gambar };
+        localStorage.setItem('kampanye', JSON.stringify(kampanye));
+        alert('Kampanye berhasil diubah!');
+        tampilkanKampanye();
+        tutupPopup();
+    }
 });
 
 // Fungsi untuk menghapus kampanye

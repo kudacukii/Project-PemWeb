@@ -21,6 +21,7 @@
             <a href="../html/kampanye.html">Kampanye</a>
             <a href="../html/profil.html">Profil</a>
             <a href="../html/lokasi.html">Lokasi Bencana</a>
+            <a href="../html/company-profile.html">Company Profile</a>
             <span id="authButtons"></span> <!-- Tombol Login/Logout akan muncul di sini -->
         </nav>
     </header>
@@ -28,21 +29,25 @@
     <main>
         <section id="kategori">
             <h2>Kategori Donasi</h2>
-            <div class="kategori-item">
-                <h3>Donasi Kehidupan Sehari-Hari</h3>
-                <ul>
-                    <li><a href="../html/donasi.html?kategori=paket-makanan">Paket Makanan</a></li>
-                    <li><a href="../html/donasi.html?kategori=pakaian">Pakaian & Perlengkapan Rumah Tangga</a></li>
-                    <li><a href="../html/donasi.html?kategori=barang-kebersihan">Barang Kebersihan</a></li>
-                </ul>
-            </div>
-            <div class="kategori-item">
-                <h3>Donasi Penanggulangan Bencana</h3>
-                <ul>
-                    <li>Bantuan Kebutuhan Mendesak</li>
-                    <li>Dana Darurat</li>
-                    <li>Relawan & Layanan</li>
-                </ul>
+            <div class="kategori-container">
+                <!-- Donasi untuk Bencana Spesifik -->
+                <div class="kategori-item">
+                    <img src="../img/bencana.png" alt="Bencana">
+                    <h3>Donasi untuk Bencana Spesifik</h3>
+                    <p>Pilih bencana yang ingin Anda bantu:</p>
+                    <ul id="daftarBencana">
+                        <!-- Daftar bencana akan diisi secara dinamis -->
+                    </ul>
+                    <button onclick="if (checkLogin()) location.href='../html/donasi.html'">Donasi Sekarang</button>
+                </div>
+        
+                <!-- Donasi Langsung ke Bantoo! -->
+                <div class="kategori-item">
+                    <img src="../img/bantoo.png" alt="Bantoo!">
+                    <h3>Donasi Langsung ke Bantoo!</h3>
+                    <p>Donasi umum untuk mendukung kegiatan Bantoo! dalam membantu korban bencana.</p>
+                    <button onclick="if (checkLogin()) location.href='../html/donasi.html?kategori=bantoo'">Donasi Sekarang</button>
+                </div>
             </div>
         </section>
     </main>
@@ -54,5 +59,6 @@
     <!-- JavaScript -->
     <script src="../js/auth.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/kategori.js"></script>
 </body>
 </html>

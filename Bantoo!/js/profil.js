@@ -29,4 +29,24 @@ if (!loggedInUser) {
     } else {
         riwayatDonasiList.innerHTML = '<li>Belum ada riwayat donasi.</li>';
     }
+
+    // Ambil riwayat laporan pengguna dari localStorage
+    const userLaporan = JSON.parse(localStorage.getItem(`laporan_${loggedInUser.email}`)) || [];
+
+    // Tampilkan riwayat laporan
+    const riwayatLaporanList = document.getElementById('riwayatLaporan');
+    if (userLaporan.length > 0) {
+        userLaporan.forEach(laporan => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <strong>Jenis Bencana:</strong> ${laporan.jenis}<br>
+                <strong>Lokasi:</strong> ${laporan.kota}, ${laporan.provinsi}<br>
+                <strong>Tanggal:</strong> ${laporan.tanggal}<br>
+                <strong>Deskripsi:</strong> ${laporan.deskripsi || '-'}
+            `;
+            riwayatLaporanList.appendChild(li);
+        });
+    } else {
+        riwayatLaporanList.innerHTML = '<li>Belum ada riwayat laporan.</li>';
+    }
 }

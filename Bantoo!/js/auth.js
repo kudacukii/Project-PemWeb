@@ -19,13 +19,15 @@ function logout() {
     window.location.href = '../html/Bantoo!.html'; // Redirect ke beranda
 }
 
-// Fungsi untuk memeriksa login
+// Fungsi untuk memeriksa apakah pengguna sudah login
 function checkLogin() {
     const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
     if (!loggedInUser) {
         alert('Anda harus login terlebih dahulu!');
         window.location.href = '../html/login.html'; // Redirect ke halaman login
+        return false; // Pengguna belum login
     }
+    return true; // Pengguna sudah login
 }
 
 // Panggil fungsi saat halaman dimuat

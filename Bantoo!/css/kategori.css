@@ -1,29 +1,117 @@
-/* Gaya khusus untuk halaman kategori */
-#kategori {
-    background-color: white;
+/* Variabel CSS untuk warna dan ukuran */
+:root {
+    --primary-color: #4CAF50;
+    --primary-hover-color: #45a049;
+    --secondary-color: #555;
+    --background-color: white;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-hover-color: rgba(0, 0, 0, 0.15);
+    --text-color: #333;
+    --text-light-color: #777;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+/* Gaya untuk container kategori */
+.kategori-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
     padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Gaya untuk setiap item kategori */
 .kategori-item {
-    margin-bottom: 2rem;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    padding: 1.5rem;
+    width: 300px;
+    text-align: center;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
-.kategori-item h3 {
+.kategori-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px var(--shadow-hover-color);
+}
+
+/* Gaya untuk gambar kategori */
+.kampanye-gambar {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
     margin-bottom: 1rem;
-    color: #4CAF50; /* Warna hijau */
 }
 
-.kategori-item ul {
-    list-style-type: disc;
-    padding-left: 2rem;
+/* Gaya untuk judul kategori */
+.kategori-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
 }
 
-.kategori-item li {
-    background-color: transparent;
-    padding: 0.5rem 0;
-    margin-bottom: 0.5rem;
-    box-shadow: none;
-    display: list-item;
+/* Gaya untuk deskripsi kategori */
+.kategori-item p {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Gaya untuk tombol Donasi Sekarang */
+.kategori-item button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color var(--transition-speed) ease;
+    width: 100%; /* Tombol memenuhi lebar container */
+}
+
+.kategori-item button:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Gaya untuk pesan jika tidak ada kampanye */
+#daftarBencana p {
+    text-align: center;
+    color: var(--text-light-color);
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+/* Responsivitas untuk layar kecil */
+@media (max-width: 768px) {
+    .kategori-container {
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .kategori-item {
+        width: 100%; /* Item memenuhi lebar container di layar kecil */
+        padding: 1rem;
+    }
+
+    .kampanye-gambar {
+        height: 120px; /* Ukuran gambar lebih kecil di layar kecil */
+    }
+
+    .kategori-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .kategori-item p {
+        font-size: 0.85rem;
+    }
+
+    .kategori-item button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
 }

@@ -22,6 +22,7 @@
             <a href="../html/kampanye.html">Kampanye</a>
             <a href="../html/profil.html">Profil</a>
             <a href="../html/lokasi.html">Lokasi Bencana</a>
+            <a href="../html/company-profile.html">Company Profile</a>
             <span id="authButtons"></span> <!-- Tombol Login/Logout -->
         </nav>
     </header>
@@ -29,7 +30,7 @@
     <main>
         <section id="kelola-kampanye">
             <h2>Kelola Kampanye</h2>
-
+        
             <!-- Form Tambah/Edit Kampanye -->
             <form id="formKampanye">
                 <input type="hidden" id="kampanyeId">
@@ -45,15 +46,19 @@
                     <label for="target">Target Donasi (Rp):</label>
                     <input type="number" id="target" required>
                 </div>
+                <div class="form-group">
+                    <label for="gambar">Unggah Gambar:</label>
+                    <input type="file" id="gambar" accept="image/*" required>
+                </div>
                 <button type="submit">Simpan</button>
             </form>
-
+        
             <!-- Fitur Pencarian -->
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Cari kampanye...">
                 <button onclick="cariKampanye()">Cari</button>
             </div>
-
+        
             <!-- Daftar Kampanye -->
             <div id="daftarKampanye">
                 <h3>Daftar Kampanye</h3>
@@ -61,7 +66,7 @@
                     <!-- Item kampanye akan ditambahkan di sini secara dinamis -->
                 </ul>
             </div>
-
+        
             <!-- Pagination -->
             <div id="pagination">
                 <button id="prevPage">Sebelumnya</button>
@@ -69,30 +74,33 @@
                 <button id="nextPage">Selanjutnya</button>
             </div>
         </section>
-    </main>
-
-    <!-- Pop-up Edit Kampanye -->
-    <div id="editPopup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="tutupPopup()">&times;</span>
-            <h2>Edit Kampanye</h2>
-            <form id="editForm">
-                <div class="form-group">
-                    <label for="editNama">Nama Kampanye:</label>
-                    <input type="text" id="editNama" required>
-                </div>
-                <div class="form-group">
-                    <label for="editDeskripsi">Deskripsi:</label>
-                    <textarea id="editDeskripsi" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="editTarget">Target Donasi (Rp):</label>
-                    <input type="number" id="editTarget" required>
-                </div>
-                <button type="submit">Simpan Perubahan</button>
-            </form>
+        
+        <!-- Pop-up Edit Kampanye -->
+        <div id="editPopup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="tutupPopup()">&times;</span>
+                <h2>Edit Kampanye</h2>
+                <form id="editForm">
+                    <div class="form-group">
+                        <label for="editNama">Nama Kampanye:</label>
+                        <input type="text" id="editNama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDeskripsi">Deskripsi:</label>
+                        <textarea id="editDeskripsi" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTarget">Target Donasi (Rp):</label>
+                        <input type="number" id="editTarget" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editGambar">Unggah Gambar Baru:</label>
+                        <input type="file" id="editGambar" accept="image/*">
+                    </div>
+                    <button type="submit">Simpan Perubahan</button>
+                </form>
+            </div>
         </div>
-    </div>
 
     <footer>
         <p>&copy; 2025 Bantoo!. Semua hak dilindungi.</p>

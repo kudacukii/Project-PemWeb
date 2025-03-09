@@ -1,48 +1,70 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('donasiForm').addEventListener('submit', function (e) {
-        e.preventDefault();
+    // Periksa apakah pengguna sudah login
+    const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+    if (!loggedInUser) {
+        alert('Anda harus login terlebih dahulu!');
+        window.location.href = '../html/login.html'; // Redirect ke halaman login
+    }
 
-        // Cek apakah pengguna sudah login
-        const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
-        if (!loggedInUser) {
-            alert('Anda harus login terlebih dahulu!');
-            window.location.href = '../html/login.html';
-            return;
-        }
+    // Ambil parameter kampanye dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const kampanye = urlParams.get('kampanye');
 
-        const nama = document.getElementById('nama').value;
-        const email = loggedInUser.email; // Gunakan email pengguna yang login
-        const jenisDonasi = document.getElementById('jenisDonasi').value;
-        const jumlah = document.getElementById('jumlah').value;
-        const pesan = document.getElementById('pesan').value;
+    // Update judul donasi berdasarkan parameter kampanye
+    const judulDonasi = document.getElementById('judulDonasi');
+    if (kampanye && judulDonasi) {
+        judulDonasi.textContent = `Donasi untuk ${decodeURIComponent(kampanye)}`;
+    }
 
-        // Validasi input
-        if (!nama || !jenisDonasi || !jumlah) {
-            alert('Harap isi semua field yang wajib diisi!');
-            return;
-        }
+    // Tangani pengiriman formulir donasi
+    const donasiForm = document.getElementById('donasiForm');
+    if (donasiForm) {
+        donasiForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Mencegah pengiriman form default
 
-        // Buat objek donasi
-        const donasi = {
-            nama,
-            email,
-            jenisDonasi,
-            jumlah,
-            pesan,
-            tanggal: new Date().toLocaleString()
-        };
+            // Cek apakah pengguna sudah login
+            if (!loggedInUser) {
+                alert('Anda harus login terlebih dahulu untuk melakukan donasi!');
+                window.location.href = '../html/login.html'; // Redirect ke halaman login
+                return;
+            }
 
-        // Simpan ke riwayat donasi umum
-        let riwayatDonasi = JSON.parse(localStorage.getItem('riwayatDonasi')) || [];
-        riwayatDonasi.push(donasi);
-        localStorage.setItem('riwayatDonasi', JSON.stringify(riwayatDonasi));
+            // Ambil nilai dari form
+            const nama = document.getElementById('nama').value;
+            const email = loggedInUser.email; // Gunakan email pengguna yang login
+            const jenisDonasi = document.getElementById('jenisDonasi').value;
+            const jumlah = document.getElementById('jumlah').value;
+            const pesan = document.getElementById('pesan').value;
 
-        // Simpan riwayat donasi berdasarkan pengguna
-        let userDonasi = JSON.parse(localStorage.getItem(`donasi_${email}`)) || [];
-        userDonasi.push(donasi);
-        localStorage.setItem(`donasi_${email}`, JSON.stringify(userDonasi));
+            // Validasi input
+            if (!nama || !jenisDonasi || !jumlah) {
+                alert('Harap isi semua field yang wajib diisi!');
+                return;
+            }
 
-        alert('Terima kasih, donasi Anda telah berhasil!');
-        window.location.href = '../html/Bantoo!.html'; // Redirect ke beranda
-    });
+            // Buat objek donasi
+            const donasi = {
+                nama,
+                email,
+                jenisDonasi,
+                jumlah,
+                pesan,
+                tanggal: new Date().toLocaleString(),
+                kampanye: kampanye ? decodeURIComponent(kampanye) : null // Tambahkan informasi kampanye jika ada
+            };
+
+            // Simpan ke riwayat donasi umum
+            let riwayatDonasi = JSON.parse(localStorage.getItem('riwayatDonasi')) || [];
+            riwayatDonasi.push(donasi);
+            localStorage.setItem('riwayatDonasi', JSON.stringify(riwayatDonasi));
+
+            // Simpan riwayat donasi berdasarkan pengguna
+            let userDonasi = JSON.parse(localStorage.getItem(`donasi_${email}`)) || [];
+            userDonasi.push(donasi);
+            localStorage.setItem(`donasi_${email}`, JSON.stringify(userDonasi));
+
+            alert('Terima kasih, donasi Anda telah berhasil!');
+            window.location.href = '../html/Bantoo!.html'; // Redirect ke beranda
+        });
+    }
 });

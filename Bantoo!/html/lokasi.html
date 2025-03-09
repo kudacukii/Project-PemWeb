@@ -20,25 +20,74 @@
             <a href="../html/kampanye.html">Kampanye</a>
             <a href="../html/profil.html">Profil</a>
             <a href="../html/lokasi.html">Lokasi Bencana</a>
+            <a href="../html/company-profile.html">Company Profile</a>
             <span id="authButtons"></span> <!-- Tombol Login/Logout akan muncul di sini -->
         </nav>
     </header>
 
     <main>
-        <section id="lokasi">
-            <h2>Pilih Lokasi</h2>
-            <div class="form-group">
-                <label for="provinsi">Provinsi:</label>
-                <select id="provinsi" onchange="isiKota()">
-                    <option value="">Pilih Provinsi</option>
-                </select>
+        <section id="laporan-bencana">
+            <h2>Laporkan Bencana</h2>
+            <form id="formLaporan">
+                <div class="form-group">
+                    <label for="namaPelapor">Nama Pelapor:</label>
+                    <input type="text" id="namaPelapor" required>
+                </div>
+                <div class="form-group">
+                    <label for="provinsi">Provinsi:</label>
+                    <select id="provinsi" onchange="isiKota()" required>
+                        <option value="">Pilih Provinsi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="kota">Kota:</label>
+                    <select id="kota" required>
+                        <option value="">Pilih Kota</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="jenisBencana">Jenis Bencana:</label>
+                    <select id="jenisBencana" required>
+                        <option value="">Pilih Jenis Bencana</option>
+                        <option value="banjir">Banjir</option>
+                        <option value="gempa">Gempa Bumi</option>
+                        <option value="kekeringan">Kekeringan</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi:</label>
+                    <textarea id="deskripsi" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="kontak">Kontak Darurat:</label>
+                    <input type="text" id="kontak" required>
+                </div>
+                <button type="submit">Kirim Laporan</button>
+            </form>
+        </section>
+
+        <section id="histori-bencana">
+            <h2>Histori Bencana</h2>
+            <div class="search-container">
+                <input type="text" id="searchHistori" placeholder="Cari berdasarkan lokasi atau jenis bencana...">
+                <button onclick="cariHistori()">Cari</button>
             </div>
-            <div class="form-group">
-                <label for="kota">Kota:</label>
-                <select id="kota">
-                    <option value="">Pilih Kota</option>
-                </select>
+            <div id="daftarHistori">
+                <!-- Histori bencana akan ditampilkan di sini -->
             </div>
+        </section>
+
+        <section id="info-bencana">
+            <h2>Informasi Bencana Terkini</h2>
+            <div id="daftarBencana">
+                <!-- Informasi bencana akan ditampilkan di sini -->
+            </div>
+        </section>
+
+        <section id="peta-bencana">
+            <h2>Peta Interaktif</h2>
+            <div id="peta" style="height: 400px; width: 100%;"></div>
         </section>
     </main>
 

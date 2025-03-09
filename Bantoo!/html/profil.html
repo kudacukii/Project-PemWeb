@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/form.css">
+    <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
     <header>
@@ -19,6 +20,7 @@
             <a href="../html/kampanye.html">Kampanye</a>
             <a href="../html/profil.html">Profil</a>
             <a href="../html/lokasi.html">Lokasi Bencana</a>
+            <a href="../html/company-profile.html">Company Profile</a>
             <span id="authButtons"></span> <!-- Tombol Login/Logout -->
         </nav>
     </header>
@@ -33,13 +35,19 @@
                 <div class="profil-info">
                     <p><strong>Username:</strong> <span id="username">-</span></p>
                     <p><strong>Email:</strong> <span id="email">-</span></p>
+                    
                     <p><strong>Riwayat Donasi:</strong></p>
                     <ul id="riwayatDonasi">
                         <!-- Riwayat donasi akan ditampilkan di sini -->
                     </ul>
+        
+                    <p><strong>Riwayat Laporan Bencana:</strong></p>
+                    <ul id="riwayatLaporan">
+                        <!-- Riwayat laporan akan ditampilkan di sini -->
+                    </ul>
                 </div>
             </div>
-
+        
             <!-- Upload Foto Profil -->
             <div class="upload-container">
                 <input type="file" id="uploadFoto" accept="image/*">
