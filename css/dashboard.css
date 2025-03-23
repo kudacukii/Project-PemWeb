@@ -1,0 +1,61 @@
+/* dashboard.css */
+
+/* Kontainer utama */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 1rem;
+    background-color: #f9f9f9;
+}
+
+/* Ringkasan donasi */
+.summary-box {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.summary-box h3 {
+    margin-top: 0;
+}
+
+/* Kartu aksi */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.action-card {
+    background: #fff;
+    width: 220px;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.action-card a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.action-card a:hover {
+    color: #388E3C;
+    text-decoration: underline;
+}
+
+/* Headings */
+.dashboard-container h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.dashboard-container h3 {
+    margin-top: 0;
+}

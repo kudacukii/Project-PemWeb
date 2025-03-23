@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,35 +9,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bantoo! - Beranda</title>
     <!-- CSS Global -->
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/buttons.css">
-    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/footer.css">
     <!-- CSS Khusus Beranda -->
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
     <header>
         <h1>Bantoo!</h1>
         <nav>
-            <a href="../html/kategori.html">Kategori Donasi</a>
-            <a href="../html/Bantoo!.html">Beranda</a>
-            <a href="../html/kampanye.html">Kampanye</a>
-            <a href="../html/profil.html">Profil</a>
-            <a href="../html/lokasi.html">Lokasi Bencana</a>
-            <span id="authButtons"></span> <!-- Tombol Login/Logout akan muncul di sini -->
+<a href="php/kategori.php">Kategori Donasi</a>
+<a href="index.php">Beranda</a> 
+<a href="php/list_campaigns.php">Campaigns</a>
+<a href="php/profil.php">Profil</a>
+<a href="php/lokasi.php">Lokasi Bencana</a>
+<a href="php/register.php">register </a>
+
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="php/logout.php">Logout</a>
+            <?php else: ?>
+                <a href="php/login.php">Login</a>
+            <?php endif; ?>
         </nav>
     </header>
 
     <main>
-        <!-- Section Hero (Gambar Besar dan Teks) -->
+        <!-- Section Hero -->
         <section id="hero">
             <div class="hero-content">
                 <h2 class="outlined-text">Bersama Membantu Sesama</h2>
                 <p class="outlined-text">Bergabunglah dengan kami untuk memberikan bantuan kepada mereka yang membutuhkan.</p>
                 <div class="cta-buttons">
-                    <button onclick="location.href='../html/kategori.html'">Donasi Sekarang</button>
-                    <button onclick="location.href='../html/profil.html'">Gabung sebagai Relawan</button>
+                    <button onclick="location.href='php/kategori.php'">Donasi Sekarang</button>
+                    <button onclick="location.href='php/profil.php'">Gabung sebagai Relawan</button>
                 </div>
             </div>
         </section>
@@ -43,19 +54,19 @@
             <h2>Berita Terkini</h2>
             <div class="berita-container">
                 <div class="berita-item">
-                    <img src="../foto/berita1.png" alt="Banjir di Jakarta">
+                    <img src="foto/berita1.png" alt="Banjir di Jakarta">
                     <h3>Banjir di Jakarta</h3>
                     <p>Banjir melanda Jakarta, ribuan warga membutuhkan bantuan darurat. Mari bantu mereka dengan memberikan donasi atau menjadi relawan.</p>
                     <a href="#">Baca Selengkapnya</a>
                 </div>
                 <div class="berita-item">
-                    <img src="../foto/berita2.png" alt="Gempa di Sulawesi">
+                    <img src="foto/berita2.png" alt="Gempa di Sulawesi">
                     <h3>Gempa di Sulawesi</h3>
                     <p>Gempa berkekuatan 6,5 SR mengguncang Sulawesi Tengah. Bantuan darurat sangat dibutuhkan untuk korban gempa.</p>
                     <a href="#">Baca Selengkapnya</a>
                 </div>
                 <div class="berita-item">
-                    <img src="../foto/berita3.png" alt="Kekeringan di NTT">
+                    <img src="foto/berita3.png" alt="Kekeringan di NTT">
                     <h3>Kekeringan di NTT</h3>
                     <p>Kekeringan melanda Nusa Tenggara Timur, warga kesulitan mendapatkan air bersih. Bantu mereka dengan donasi air bersih.</p>
                     <a href="#">Baca Selengkapnya</a>
@@ -67,7 +78,7 @@
         <section id="apa-terjadi">
             <h2>Apa yang Sedang Terjadi?</h2>
             <div class="content">
-                <img src="../foto/berita4.png" alt="Apa yang Sedang Terjadi">
+                <img src="foto/berita4.png" alt="Apa yang Sedang Terjadi">
                 <div class="text">
                     <p>
                         Saat ini, banyak daerah di Indonesia yang membutuhkan bantuan darurat akibat bencana alam seperti banjir, gempa bumi, dan kekeringan. 
@@ -75,7 +86,7 @@
                         <strong>Bantoo!</strong> hadir untuk membantu mereka dengan menggalang donasi dan relawan. 
                         Mari bersama-sama meringankan beban mereka.
                     </p>
-                    <button onclick="location.href='../html/kampanye.html'">Lihat Kampanye</button>
+                    <button onclick="location.href='php/list_campaigns.php'">Lihat campaigns</button>
                 </div>
             </div>
         </section>
@@ -86,7 +97,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="../js/auth.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
